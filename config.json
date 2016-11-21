@@ -5,5 +5,7 @@
   "posts_dirs": ["./content/posts/"],
   "styles_dirs": ["./layouts/css/"],
   "js_dirs": ["./layouts/js/"],
-  "templates_dirs": ["./layouts/templates/"]
+  "templates_dirs": ["./layouts/templates/"],
+
+  "ignore_posts": ["ignore"]
 }

@@ -5,6 +5,7 @@
     <h1>{{ site.name }}</h1>
     {% for post in posts %}
     <h2>{{ post.get_author() }} - {{ post.get_date() }}</h2>
+    <p>{{ post.get_content() }}</p>
     {% endfor %}
   </div>
 

@@ -1,4 +1,4 @@
-import re
+import re, os
 import markdown2
 
 class Page:
