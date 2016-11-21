@@ -1,5 +1,5 @@
 # Final Project Proposal
-*High level summary of your project, including the things that **you** find interesting.*
+*High level summary of your project, including the things that* **you** *find interesting.*
 
 ## Data Plan
 *Summarize data sources, data formats, and how to obtain or generate the data you will be using*
