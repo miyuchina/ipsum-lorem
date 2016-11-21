@@ -1,0 +1,9 @@
+{
+  "blog_name": "Another Blog",
+  "default_author": "Mi",
+
+  "posts_dirs": ["./content/posts/"],
+  "styles_dirs": ["./layouts/css/"],
+  "js_dirs": ["./layouts/js/"],
+  "templates_dirs": ["./layouts/templates/"]
+}

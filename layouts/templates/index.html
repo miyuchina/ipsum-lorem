@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <div>
+    <h1>{{ site.name }}</h1>
+    {% for post in posts %}
+    <h2>{{ post.get_author() }} - {{ post.get_date() }}</h2>
+    {% endfor %}
+  </div>
+
+{% endblock %}
