@@ -31,14 +31,17 @@ class Post(Page):
         self._author = ""
         self._date = ""
         self._content = ""
+        self._static_path = ""
 
     def load(self, md_file):
         self._title, self._author, self._date, self._content = parse(md_file)
+        self._static_path = "posts/{} - {}.html".format(self._date, self._title)
 
     def get_title(self): return self._title
     def get_author(self): return self._author
     def get_content(self): return self._content
     def get_date(self): return self._date
+    def get_static_path(self): return self._static_path
 
 def parse(md_file):
     """

@@ -13,18 +13,20 @@ class Blog:
         self.name = conf["blog_name"]
         self.default_author = conf["default_author"]
 
-        self._posts_dirs = conf["posts_dirs"]
-        self._styles_dirs = conf["styles_dirs"]
-        self._js_dirs = conf["js_dirs"]
-        self._templates_dirs = conf["templates_dirs"]
+        self._posts_dir = conf["posts_dir"]
+        self._theme_dir = conf["styles_dir"] + conf["theme"] + "/"
+        self._js_dir = conf["js_dir"]
+        self._templates_dir = conf["templates_dir"]
+        self._static_dir = conf["static_dir"]
 
         # ignore files with these patterns
         self._ignore_posts = [re.compile(pattern) for pattern in conf["ignore_posts"]]
 
-    def get_posts_dirs(self): return self._posts_dirs
-    def get_styles_dirs(self): return self._styles_dirs
-    def get_js_dirs(self): return self._js_dirs
-    def get_templates_dirs(self): return self._templates_dirs
+    def get_posts_dir(self): return self._posts_dir
+    def get_theme_dir(self): return self._theme_dir
+    def get_js_dir(self): return self._js_dir
+    def get_templates_dir(self): return self._templates_dir
+    def get_static_dir(self): return self._static_dir
     def get_ignore_posts(self): return self._ignore_posts
 
     def check_included(self, filename):

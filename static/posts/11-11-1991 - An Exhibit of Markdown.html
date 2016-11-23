@@ -1,24 +1,26 @@
 <html>
   <head>
     <title>Another Blog</title>
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="../css/post.css">
 
     <!-- code highlighter -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
   </head>
-  
+
   <body>
     
 
-  <div class="info">
-    <h1>An Exhibit of Markdown</h1>
-    <p>anonymous - 11-11-1991</p>
-  </div>
+  <div class="container">
+    <div class="info">
+      <h1>An Exhibit of Markdown</h1>
+      <p>anonymous - 11-11-1991</p>
+    </div>
 
-  <div class="post_content">
-    <h1>An exhibit of Markdown</h1>
+    <div class="post_content">
+      <h1>An exhibit of Markdown</h1>
 
 <p>This note demonstrates some of what <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is capable of doing.</p>
 
@@ -56,7 +58,8 @@
 
 <h3>Code block</h3>
 
-<pre><code>Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
+<pre><code>def foo(bar):
+    return None
 </code></pre>
 
 <p>You can also make <code>inline code</code> to add code into other things.</p>
@@ -105,6 +108,7 @@
 
 <p>There's actually a lot more to Markdown than this. See the official <a href="http://daringfireball.net/projects/markdown/basics">introduction</a> and <a href="http://daringfireball.net/projects/markdown/syntax">syntax</a> for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.</p>
 
+    </div>
   </div>
 
 

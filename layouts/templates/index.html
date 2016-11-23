@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 
-  <div>
-    <h1>{{ site.name }}</h1>
-    {% for post in posts %}
-    <h2>{{ post.get_author() }} - {{ post.get_date() }}</h2>
-    <p>{{ post.get_content() }}</p>
-    {% endfor %}
+  <div class="container">
+    <div class="header">
+      <h1>{{ site.name }}</h1>
+    </div>
+
+    <div class="posts">
+      <ul>
+        {% for post in posts %}
+        <li>
+          <a href="{{ post.get_static_path() }}">{{ post.get_title() }}</a> - {{ post.get_date() }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 
 {% endblock %}

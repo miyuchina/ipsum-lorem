@@ -2,10 +2,13 @@
   "blog_name": "Another Blog",
   "default_author": "Mi",
 
-  "posts_dirs": ["./content/posts/"],
-  "styles_dirs": ["./layouts/css/"],
-  "js_dirs": ["./layouts/js/"],
-  "templates_dirs": ["./layouts/templates/"],
+  "theme": "default",
+
+  "posts_dir": "./content/posts/",
+  "styles_dir": "./layouts/css/",
+  "js_dir": "./layouts/js/",
+  "templates_dir": "./layouts/templates/",
+  "static_dir": "./static/",
 
   "ignore_posts": ["ignore"]
 }
