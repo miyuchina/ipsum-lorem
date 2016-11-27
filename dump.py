@@ -36,10 +36,11 @@ def dump_post(env, site_obj, post_obj):
         static_dir: the output directory.
     """
     template = env.get_template('post.html')
-    post_style = "../css/post.css"
+    post_style = "../../../css/post.css"
+    static_path = site_obj.get_static_dir() + post_obj.get_static_path()
 
-    static_name = "{} - {}.html".format(post_obj.get_date(), post_obj.get_title())
-    with open(site_obj.get_static_dir() + "posts/" + static_name, "w+") as f:
+    os.makedirs(os.path.dirname(static_path), exist_ok=True)
+    with open(static_path + ".html", "w+") as f:
         f.write(template.render(site=site_obj, post=post_obj, style=post_style))
 
 def dump_css(env, site_obj):
@@ -69,6 +70,7 @@ def generate():
             included_posts.append(p)
 
     # Generate index.
+    included_posts = sorted(included_posts, key=page.Post.getKey, reverse=True)
     dump_index(env, b, included_posts)
 
     # Generate css.
