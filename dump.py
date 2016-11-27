@@ -70,6 +70,7 @@ def generate():
             included_posts.append(p)
 
     # Generate index.
+    included_posts = sorted(included_posts, key=page.Post.getKey, reverse=True)
     dump_index(env, b, included_posts)
 
     # Generate css.

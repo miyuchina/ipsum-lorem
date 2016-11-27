@@ -44,6 +44,11 @@ class Post(Page):
     def get_date(self): return self._date
     def get_static_path(self): return self._static_path
 
+    def getKey(self):
+        month, day, year = self._date.split("-")
+        return "{}-{}-{}".format(year, month, day)
+
+
 def parse(md_file):
     """
     Parse the header information and content from the markdown file.
