@@ -1,0 +1,8 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  margin: 1em, 5em, 1em, 5em;
+}
+
+div.container {
+  padding: 2em 15em 2em 15em;
+}

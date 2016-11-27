@@ -4,11 +4,11 @@
 
   "theme": "default",
 
-  "posts_dir": "./content/posts/",
-  "styles_dir": "./layouts/css/",
-  "js_dir": "./layouts/js/",
-  "templates_dir": "./layouts/templates/",
-  "static_dir": "./static/",
+  "posts_dir": "posts/",
+  "styles_dir": "templates/css/",
+  "js_dir": "templates/js/",
+  "templates_dir": "templates/",
+  "static_dir": "static/",
 
   "ignore_posts": ["ignore"]
 }
