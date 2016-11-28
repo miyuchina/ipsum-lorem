@@ -14,6 +14,7 @@ class Blog:
         self.default_author = conf["default_author"]
 
         self._posts_dir = conf["posts_dir"]
+        self._assets_dir = conf["assets_dir"]
         self._theme_dir = conf["styles_dir"] + conf["theme"] + "/"
         self._js_dir = conf["js_dir"]
         self._templates_dir = conf["templates_dir"]
@@ -23,6 +24,7 @@ class Blog:
         self._ignore_posts = [re.compile(pattern) for pattern in conf["ignore_posts"]]
 
     def get_posts_dir(self): return self._posts_dir
+    def get_assets_dir(self): return self._assets_dir
     def get_theme_dir(self): return self._theme_dir
     def get_js_dir(self): return self._js_dir
     def get_templates_dir(self): return self._templates_dir

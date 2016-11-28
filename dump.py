@@ -43,7 +43,7 @@ def dump_post(env, site_obj, post_obj):
     with open(static_path + ".html", "w+") as f:
         f.write(template.render(site=site_obj, post=post_obj, style=post_style))
 
-def dump_css(env, site_obj):
+def dump_css(site_obj):
     css_static_dir = site_obj.get_static_dir() + "css/"
 
     for css_file in os.listdir(site_obj.get_theme_dir()):
@@ -76,7 +76,7 @@ def generate():
     dump_index(env, b, included_posts)
 
     # Generate css.
-    dump_css(env, b)
+    dump_css(b)
 
     print("Done.")
 
