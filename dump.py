@@ -19,8 +19,8 @@ def dump_index(env, site_obj, included_posts, dst):
         static_dir: the output directory.
     """
     template = env.get_template('index.html')
-    index_style = "/css/index.css"
-    assets_path = "/assets/"
+    index_style = "css/index.css"
+    assets_path = "assets/"
 
     baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
 
@@ -43,9 +43,9 @@ def dump_post(env, site_obj, post_obj, dst):
         static_dir: the output directory.
     """
     template = env.get_template('post.html')
-    post_style = "/css/post.css"
+    post_style = "css/post.css"
     static_path = site_obj.get_static_dir() + post_obj.get_static_path()
-    assets_path = "/assets/"
+    assets_path = "assets/"
 
     baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
 
