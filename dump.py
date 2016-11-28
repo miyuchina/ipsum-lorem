@@ -1,6 +1,5 @@
 # Python packages
 import os, shutil
-import http.server, socketserver
 
 # User-defined packages
 import blog, page

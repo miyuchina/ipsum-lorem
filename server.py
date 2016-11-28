@@ -20,3 +20,7 @@ def css(css_file):
 @app.route('/posts/<year>/<month>/<title>')
 def post(year, month, title):
     return app.send_static_file("posts/{}/{}/{}.html".format(year, month, title))
+
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file("favicon.ico")
