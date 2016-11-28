@@ -48,6 +48,13 @@ def dump_css(site_obj):
     for css_file in os.listdir(site_obj.get_theme_dir()):
         shutil.copy(site_obj.get_theme_dir() + css_file, css_static_dir)
 
+def dump_assets(site_obj):
+    src = site_obj.get_assets_dir()
+    dst = site_obj.get_static_dir() + "assets/"
+
+    if os.path.exists(dst):
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
 
 def generate():
     """
@@ -76,6 +83,9 @@ def generate():
 
     # Generate css.
     dump_css(b)
+
+    # Generate assets.
+    dump_assets(b)
 
     print("Done.")
 

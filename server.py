@@ -23,4 +23,4 @@ def post(year, month, title):
 
 @app.route('/favicon.ico')
 def favicon():
-    return app.send_static_file("favicon.ico")
+    return app.send_static_file("assets/favicon.ico")
