@@ -6,3 +6,7 @@ body {
 div.container {
   padding: 2em 15em 2em 15em;
 }
+
+img {
+  width: 200px;
+}
