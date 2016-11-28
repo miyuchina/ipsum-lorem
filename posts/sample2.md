@@ -2,7 +2,7 @@ title: A Strange Meeting
 author: John Watson
 date: 01-29-2008
 ---
-![Dr. Watson](/assets/img/dr_watson.jpg "Dr. Watson")
+![Dr. Watson](assets/img/dr_watson.jpg "Dr. Watson")
 
 I don't know *how* I'm meant to be writing this. I'm not a writer. Ella thought keeping a blog would help but it hasn't because nothing ever happens to me. But today, something did. Something happened.
 
