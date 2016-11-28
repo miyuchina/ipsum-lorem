@@ -106,4 +106,4 @@ def generate(dst):
     print("Done.")
 
 if __name__ == "__main__":
-    generate()
+    generate("github")
