@@ -21,6 +21,10 @@ def css(css_file):
 def post(year, month, title):
     return app.send_static_file("posts/{}/{}/{}.html".format(year, month, title))
 
-@app.route('/favicon.ico')
+@app.route('/assets/favicon.ico')
 def favicon():
     return app.send_static_file("assets/favicon.ico")
+
+@app.route('/assets/img/<filename>')
+def img(filename):
+    return app.send_static_file("assets/img/" + filename)
