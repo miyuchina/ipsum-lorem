@@ -54,6 +54,8 @@ def generate():
     """
     Generate all static pages.
     """
+    print("Generating static files...")
+
     # Create Blog, Environment and Post objects.
     i = page.Index()
     b = blog.Blog()
@@ -75,6 +77,8 @@ def generate():
 
     # Generate css.
     dump_css(env, b)
+
+    print("Done.")
 
 if __name__ == "__main__":
     generate()

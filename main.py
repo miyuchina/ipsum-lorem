@@ -5,7 +5,7 @@ import os, sys
 import dump, github, server
 
 def usage():
-    pass
+    print("Usage: python main.py [github|local]")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -15,3 +15,5 @@ if __name__ == "__main__":
             github.to_gh_pages()
         elif sys.argv[1] == "local":
             server.app.run()
+        else:
+            usage()
