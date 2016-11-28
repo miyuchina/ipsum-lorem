@@ -12,6 +12,7 @@ class Blog:
         # Site-wide variables.
         self.name = conf["blog_name"]
         self.default_author = conf["default_author"]
+        self.baseurl = conf["baseurl"]
 
         self._posts_dir = conf["posts_dir"]
         self._assets_dir = conf["assets_dir"]

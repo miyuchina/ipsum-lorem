@@ -1,6 +1,7 @@
 {
   "blog_name": "Another Blog",
   "default_author": "Mi",
+  "baseurl": "//williams-cs.github.io/miyuchina-project/",
 
   "theme": "default",
 

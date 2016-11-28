@@ -7,7 +7,6 @@ import dump
 static_dir = '/templates'
 
 app = Flask(__name__, static_url_path=static_dir)
-dump.generate()
 
 @app.route('/')
 def index():
