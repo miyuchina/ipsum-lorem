@@ -31,10 +31,11 @@ class Post(Page):
         self._author = ""
         self._date = ""
         self._content = ""
+        self._excerpt = ""
         self._static_path = ""
 
     def load(self, md_file):
-        self._title, self._author, self._date, self._content = parse(md_file)
+        self._title, self._author, self._date, self._content, self._excerpt = parse(md_file)
         month, _, year = self._date.split("-")
         self._static_path = "posts/{}/{}/{}".format(year, month, self._title)
 
@@ -42,6 +43,7 @@ class Post(Page):
     def get_author(self): return self._author
     def get_content(self): return self._content
     def get_date(self): return self._date
+    def get_excerpt(self): return self._excerpt
     def get_static_path(self): return self._static_path
 
     def getKey(self):
@@ -74,11 +76,16 @@ def parse(md_file):
         # Match the content.
         REGEX = re.compile("-{3}\n(.*)$", re.DOTALL)
 
-        # Store the content.
-        content = markdown2.markdown(re.search(REGEX, md).group(1))
+        # Store the content and excerpt.
+        content = re.search(REGEX, md).group(1)
+        excerpt = re.match("(.*)\n", content).group(1)
+
+        # Parse the content and excerpt.
+        content = markdown2.markdown(content)
+        excerpt = markdown2.markdown(excerpt)
 
     title = frontmatter["title"]
     author = frontmatter["author"]
     date = frontmatter["date"]
 
-    return title, author, date, content
+    return title, author, date, content, excerpt

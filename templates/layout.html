@@ -13,6 +13,24 @@
   </head>
 
   <body>
-    {% block content %}{% endblock %}
+    <div class="container">
+      <!--
+      <div class="navbar">
+        <a href="/">Home</a>
+        <a href="#">About</a>
+      </div>
+      -->
+      {% block content %}{% endblock %}
+      <div class="footer">
+        <div id="blog-info">
+          <p id="site-name">{{ site.name }}</p>
+          <p id="description">{{ site.description }}</p>
+        </div>
+        <div id="author-info">
+          <p id="default-author">{{ site.default_author }} &copy; 2017</p>
+          <p id="contact">{{ site.contact }}</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

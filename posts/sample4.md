@@ -2,7 +2,7 @@ title: The Sign of Three
 author: John Watson
 date: 08-11-2009
 ---
-Wow!!!!!!!!! What a day!!!!!! That was the best wedding ever!!!!!! Sherlock was amazing! Love is amazing! Fluffy clouds and little birds are amazing!!! It was all just like so amazing! I'm going to write up all about it here! Because you all love reading my blog because I'm such a good writer!!! Perhaps I'll write about some of the other mundane stuff I do like playing board games or eating sandwiches and drinking tea in front of the Eastenders!
+Wow! What a day! That was the best wedding ever! Sherlock was amazing! Love is amazing! Fluffy clouds and little birds are amazing! It was all just like so amazing! I'm going to write up all about it here! Because you all love reading my blog because I'm such a good writer! Perhaps I'll write about some of the other mundane stuff I do like playing board games or eating sandwiches and drinking tea in front of the Eastenders!
 
 Sorry. I can't do it any more. I was going to attempt to mimic John's style of writing for an entire blog post but life's too short. And I say that as someone who died over two years ago. Good evening everyone, this is Sherlock Holmes. John can't be with you today as he is on his Sex Holiday. Sorry, honeymoon.
 

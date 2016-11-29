@@ -1,7 +1,9 @@
 {
   "blog_name": "Another Blog",
-  "default_author": "Mi",
+  "default_author": "Mi Yu",
   "baseurl": "//williams-cs.github.io/miyuchina-project/",
+  "description": "The best static site generator is the one built by yourself.",
+  "contact": "Williams College '20",
 
   "theme": "default",
 

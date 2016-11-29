@@ -1,6 +1,12 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  margin: 1em, 5em, 1em, 5em;
+  line-height: 1.5;
+}
+
+#post-content a {
+  color: gray;
+  font-weight: bolder;
+  text-decoration: none;
 }
 
 div.container {
@@ -8,5 +14,46 @@ div.container {
 }
 
 img {
-  width: 200px;
+  width: 400px;
+}
+
+#post-date {
+  color: gray;
+  margin-left: 1em;
+}
+
+#post-author, #post-date {
+  display: inline;
+}
+
+#post-content {
+  line-height: 2;
+  font-weight: lighter;
+  padding-top: 1em;
+}
+
+.footer {
+  padding-top: 1em;
+  font-size: smaller;
+}
+
+#blog-info, #author-info {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#blog-info {
+  width: 50%;
+  border-style: dashed;
+  border-width: 0px 1px 0px 0px;
+  border-color: gray;
+}
+
+#author-info {
+  margin-left: 1em;
+}
+
+.footer #description, .footer #contact {
+  font-weight: lighter;
+  color: gray;
 }

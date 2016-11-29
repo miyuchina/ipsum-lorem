@@ -1,15 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 
-  <div class="container">
-    <div class="info">
-      <h1>{{ post.get_title() }}</h1>
-      <p>{{ post.get_author() }} - {{ post.get_date() }}</p>
-    </div>
+<div class="info">
+  <h1>{{ post.get_title() }}</h1>
+  <div id="post-author">{{ post.get_author() }}</div>
+  <div id="post-date">{{ post.get_date() }}</div>
+</div>
 
-    <div class="post_content">
-      {{ post.get_content() }}
-    </div>
-  </div>
+<div id="post-content">
+  {{ post.get_content() }}
+</div>
 
 {% endblock %}

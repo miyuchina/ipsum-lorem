@@ -13,6 +13,8 @@ class Blog:
         self.name = conf["blog_name"]
         self.default_author = conf["default_author"]
         self.baseurl = conf["baseurl"]
+        self.description = conf["description"]
+        self.contact = conf["contact"]
 
         self._posts_dir = conf["posts_dir"]
         self._assets_dir = conf["assets_dir"]
