@@ -10,7 +10,8 @@ body {
 }
 
 div.container {
-  padding: 2em 15em 2em 15em;
+  margin: 2em auto;
+  width: 700px;
 }
 
 img {
@@ -47,6 +48,7 @@ img {
   border-style: dashed;
   border-width: 0px 1px 0px 0px;
   border-color: gray;
+  margin-left: 1em;
 }
 
 #author-info {
