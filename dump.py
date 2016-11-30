@@ -59,17 +59,32 @@ def dump_post(env, site_obj, post_obj, dst):
                                 baseurl=baseurl))
 
 def dump_css(site_obj):
+    """
+    Copy all the css files to the static folder.
+
+    Args:
+        site_obj: provides access to site-wide variables.
+    """
     css_static_dir = site_obj.get_static_dir() + "css/"
 
     for css_file in os.listdir(site_obj.get_theme_dir()):
         shutil.copy(site_obj.get_theme_dir() + css_file, css_static_dir)
 
 def dump_assets(site_obj):
+    """
+    Copy all the assets to the static folder.
+
+    Args:
+        site_obj: provides access to site-wide variables.
+    """
     src = site_obj.get_assets_dir()
     dst = site_obj.get_static_dir() + "assets/"
 
+    # Remove previously cached assets
     if os.path.exists(dst):
         shutil.rmtree(dst)
+
+    # Copy to static folder
     shutil.copytree(src, dst)
 
 def generate(dst):
@@ -104,6 +119,7 @@ def generate(dst):
     dump_assets(b)
 
     print("Done.")
+    return b
 
 if __name__ == "__main__":
     generate("github")

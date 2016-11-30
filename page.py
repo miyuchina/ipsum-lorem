@@ -1,4 +1,7 @@
+# Python packages
 import re, os
+
+# External packages
 import markdown2
 
 class Page:
@@ -12,6 +15,7 @@ class Page:
         """
         self._page_type = page_type
 
+    # Accessor method
     def get_page_type(self): return self._page_type
 
 class Index(Page):
@@ -19,6 +23,7 @@ class Index(Page):
     A subclass of Page with page_type = "index".
     """
     def __init__(self):
+        # self._page_type = "index"
         super().__init__("index")
 
 class Post(Page):
@@ -35,10 +40,17 @@ class Post(Page):
         self._static_path = ""
 
     def load(self, md_file):
+        """
+        Populate a Post instance with contents of the md_file.
+
+        Args:
+            md_file: the path to the markdown file.
+        """
         self._title, self._author, self._date, self._content, self._excerpt = parse(md_file)
         month, _, year = self._date.split("-")
         self._static_path = "posts/{}/{}/{}".format(year, month, self._title)
 
+    # Accessor methods
     def get_title(self): return self._title
     def get_author(self): return self._author
     def get_content(self): return self._content
@@ -46,6 +58,7 @@ class Post(Page):
     def get_excerpt(self): return self._excerpt
     def get_static_path(self): return self._static_path
 
+    # provide a way to sort posts according to publication date
     def getKey(self):
         month, day, year = self._date.split("-")
         return "{}-{}-{}".format(year, month, day)
@@ -84,8 +97,8 @@ def parse(md_file):
         content = markdown2.markdown(content)
         excerpt = markdown2.markdown(excerpt)
 
-    title = frontmatter["title"]
-    author = frontmatter["author"]
-    date = frontmatter["date"]
+    title = frontmatter.get("title", "Untitled")
+    author = frontmatter.get("author", "Anonymous")
+    date = frontmatter.get("date", "01-01-1970")
 
     return title, author, date, content, excerpt

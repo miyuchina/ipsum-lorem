@@ -1,21 +1,30 @@
-# System packages
+# Python packages
 import os, sys
 
-# User-defined
+# User-defined packages
 import dump, github, server
 
 def usage():
     print("Usage: python main.py [github|local] <commit-msg>")
 
 if __name__ == "__main__":
+    # the command needs at least 2 args; if using github, 3 is needed
     if len(sys.argv) < 2 or (sys.argv[1] == "github" and len(sys.argv) < 3):
         usage()
     else:
         if sys.argv[1] == "github":
+            # generate static files
             dump.generate(sys.argv[1])
+            # push to github
             github.to_gh_pages(" ".join(sys.argv[2:]))
+
         elif sys.argv[1] == "local":
-            dump.generate(sys.argv[1])
-            server.app.run()
+            # generate static files
+            site_obj = dump.generate(sys.argv[1])
+            # run the flask app locally
+            app = server.create_app(site_obj)
+            app.run()
+
+        # only allow the two flags above
         else:
             usage()
