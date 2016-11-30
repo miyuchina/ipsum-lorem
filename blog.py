@@ -2,30 +2,45 @@ import re, json
 
 class Blog:
     """
-    The Blog class to read config file and store site-wide variables.
+    Read config file and store site-wide variables.
     """
     def __init__(self, config_file="./config.json"):
+        """
+        When initializing a Blog instance, populate it with settings in the
+        config file.
+
+        In case of KeyError (user not providing settings in config.json),
+        revert to default settings provided below.
+
+        Args:
+            config_file: specify the path to config file.
+        """
         # Read config file.
         with open(config_file, "r") as fin:
             conf = json.load(fin)
 
-        # Site-wide variables.
-        self.name = conf["blog_name"]
-        self.default_author = conf["default_author"]
-        self.baseurl = conf["baseurl"]
-        self.description = conf["description"]
-        self.contact = conf["contact"]
+        # Public variables
+        self.name = conf.get("blog_name", "Another Blog")
+        self.default_author = conf.get("default_author", "Anonymous")
+        self.baseurl = conf.get("baseurl", "localhost:5000/")
+        self.description = conf.get("description", "Some description.")
+        self.contact = conf.get("contact", "Your contact information.")
+        self.highlight_style = conf.get("highlight_style", "default")
 
-        self._posts_dir = conf["posts_dir"]
-        self._assets_dir = conf["assets_dir"]
-        self._theme_dir = conf["styles_dir"] + conf["theme"] + "/"
-        self._js_dir = conf["js_dir"]
-        self._templates_dir = conf["templates_dir"]
-        self._static_dir = conf["static_dir"]
+        # Private variables
+        self._posts_dir = conf.get("posts_dir", "posts/")
+        self._assets_dir = conf.get("assets_dir", "assets/")
+        self._theme_dir = (conf.get("styles_dir", "templates/css/")
+                           + conf.get("theme", "default") + "/")
+        self._js_dir = conf.get("js_dir", "templates/js/")
+        self._templates_dir = conf.get("templates_dir", "templates/")
+        self._static_dir = conf.get("static_dir", "static/")
 
         # ignore files with these patterns
-        self._ignore_posts = [re.compile(pattern) for pattern in conf["ignore_posts"]]
+        self._ignore_posts = [re.compile(pattern) for pattern
+                              in conf.get("ignore_posts", ["ignore"])]
 
+    # Accessor methods
     def get_posts_dir(self): return self._posts_dir
     def get_assets_dir(self): return self._assets_dir
     def get_theme_dir(self): return self._theme_dir
@@ -36,11 +51,19 @@ class Blog:
 
     def check_included(self, filename):
         """
+        Check if a post should be included on the index page.
+
+        Args:
+            filename: the path to the markdown file.
         """
+        # exclude non-markdown files
         if not filename.endswith(".md"):
             return False
 
+        # exclude patterns specified in ignore_posts
         for REGEX in self.get_ignore_posts():
             if re.match(REGEX, filename):
                 return False
+
+        # passed all the tests, include this post
         return True

@@ -6,6 +6,7 @@
   "contact": "Williams College '20",
 
   "theme": "default",
+  "highlight_style": "default",
 
   "posts_dir": "posts/",
   "assets_dir": "assets/",
