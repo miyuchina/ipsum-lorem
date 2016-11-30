@@ -63,3 +63,8 @@ ul a {
   font-weight: lighter;
   color: gray;
 }
+
+.footer #site-name a, .footer #default-author a {
+    color: black;
+    text-decoration: none;
+}
