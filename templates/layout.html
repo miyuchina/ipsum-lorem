@@ -23,11 +23,11 @@
       {% block content %}{% endblock %}
       <div class="footer">
         <div id="blog-info">
-          <p id="site-name">{{ site.name }}</p>
+          <p id="site-name"><a href="/">{{ site.name }}</a></p>
           <p id="description">{{ site.description }}</p>
         </div>
         <div id="author-info">
-          <p id="default-author">{{ site.default_author }} &copy; 2017</p>
+          <p id="default-author"><a href="/about">{{ site.default_author }} &copy; 2017</a></p>
           <p id="contact">{{ site.contact }}</p>
         </div>
       </div>
