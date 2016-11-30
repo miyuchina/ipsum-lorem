@@ -19,7 +19,7 @@ def to_gh_pages(commit_msg, site_obj):
     os.system("git push")
 
     # push to gh-pages branch
-    os.system("git subtree push --prefix static origin gh-pages")
+    os.system("git subtree push --prefix {} origin gh-pages".format(site_obj.get_static_dir()))
 
     term_prompt_header = colored("[{}] ".format(site_obj.name), "cyan")
     print(term_prompt_header + "Dumped to Github Pages.")

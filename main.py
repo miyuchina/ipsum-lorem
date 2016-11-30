@@ -14,9 +14,9 @@ if __name__ == "__main__":
     else:
         if sys.argv[1] == "github":
             # generate static files
-            b = dump.generate(sys.argv[1])
+            site_obj = dump.generate(sys.argv[1])
             # push to github
-            github.to_gh_pages(" ".join(sys.argv[2:]), b)
+            github.to_gh_pages(" ".join(sys.argv[2:]), site_obj)
 
         elif sys.argv[1] == "local":
             # generate static files
