@@ -19,6 +19,10 @@ def create_app(site_obj):
     def post(year, month, title):
         return app.send_static_file("posts/{}/{}/{}.html".format(year, month, title))
 
+    @app.route('/about')
+    def about():
+        return app.send_static_file('about.html')
+
     @app.route('/assets/favicon.ico')
     def favicon():
         return app.send_static_file("assets/favicon.ico")

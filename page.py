@@ -63,6 +63,12 @@ class Post(Page):
         month, day, year = self._date.split("-")
         return "{}-{}-{}".format(year, month, day)
 
+class About(Page):
+    """
+    A subclass of Page with page_type = "about".
+    """
+    def __init__(self):
+        super().__init__("about")
 
 def parse(md_file):
     """

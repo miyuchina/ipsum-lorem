@@ -89,6 +89,27 @@ def dump_assets(site_obj):
     # Copy to static folder
     shutil.copytree(src, dst)
 
+def dump_about(env, site_obj, dst):
+    """
+    Generate the static about page.
+
+    Args:
+        site_obj: provides access to site-wide variables.
+    """
+    template = env.get_template('about.html')
+    about_style = "css/about.css"
+    static_path = site_obj.get_static_dir()
+    assets_path = "assets/"
+
+    baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
+
+    with open(static_path + "about.html", "w+") as f:
+        f.write(template.render(site=site_obj,
+                                style=about_style,
+                                favicon_dir=assets_path + "favicon.ico",
+                                baseurl=baseurl))
+
+
 def generate(dst):
     """
     Generate all static pages.
@@ -114,6 +135,9 @@ def generate(dst):
     # Generate index.
     included_posts = sorted(included_posts, key=page.Post.getKey, reverse=True)
     dump_index(env, b, included_posts, dst)
+
+    # Generate about.
+    dump_about(env, b, dst)
 
     # Generate css.
     dump_css(b)

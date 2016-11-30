@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="avatar">
+  <img id="favicon" src={{ baseurl }}{{ favicon_dir }} alt="favicon">
+</div>
+
+<div class="info">
+  <h1 id="site-name">{{ site.name }}</h1>
+  <p id="description">{{ site.description }}</p>
+</div>
+
+{% endblock %}
