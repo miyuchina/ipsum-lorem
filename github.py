@@ -1,7 +1,10 @@
 # Python packages
 import os
 
-def to_gh_pages(commit_msg):
+# External packages
+from termcolor import colored
+
+def to_gh_pages(commit_msg, site_obj):
     """
     Commit and push all files to main branch and gh-pages.
 
@@ -18,4 +21,5 @@ def to_gh_pages(commit_msg):
     # push to gh-pages branch
     os.system("git subtree push --prefix static origin gh-pages")
 
-    print("Dumped to Github Pages.")
+    term_prompt_header = colored("[{}] ".format(site_obj.name), "cyan")
+    print(term_prompt_header + "Dumped to Github Pages.")

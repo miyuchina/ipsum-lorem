@@ -6,6 +6,7 @@ import blog, page
 
 # External packages
 from jinja2 import Environment, FileSystemLoader
+from termcolor import colored
 
 
 def dump_index(env, site_obj, included_posts, dst):
@@ -92,12 +93,13 @@ def generate(dst):
     """
     Generate all static pages.
     """
-    print("Generating static files...")
-
     # Create Blog, Environment and Post objects.
     i = page.Index()
     b = blog.Blog()
     env = Environment(loader=FileSystemLoader(b.get_templates_dir()))
+
+    term_prompt_header = colored("[{}] ".format(b.name), "cyan")
+    print(term_prompt_header + "Generating static files...")
 
     included_posts = []
 
@@ -119,7 +121,7 @@ def generate(dst):
     # Generate assets.
     dump_assets(b)
 
-    print("Done.")
+    print(term_prompt_header + "Done.")
     return b
 
 if __name__ == "__main__":
