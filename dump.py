@@ -66,6 +66,7 @@ def dump_css(site_obj):
         site_obj: provides access to site-wide variables.
     """
     css_static_dir = site_obj.get_static_dir() + "css/"
+    os.makedirs(css_static_dir, exist_ok=True)
 
     for css_file in os.listdir(site_obj.get_theme_dir()):
         shutil.copy(site_obj.get_theme_dir() + css_file, css_static_dir)
