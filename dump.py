@@ -8,6 +8,33 @@ import blog, page
 from jinja2 import Environment, FileSystemLoader
 from termcolor import colored
 
+def get_term_prompt_header(site_obj):
+    return colored("[{}] ".format(site_obj.name), "cyan")
+
+def get_baseurl(site_obj, dst):
+    return site_obj.baseurl if dst == "github" else "//localhost:5000/"
+
+def init():
+    b = blog.Blog()
+
+    print(get_term_prompt_header(b) + "This could remove all your content.")
+    confirmation = input(get_term_prompt_header(b) + "Are you sure? yes/no: ")
+
+    if confirmation == "no":
+        print(get_term_prompt_header(b) + "Action canceled by user.")
+
+    elif confirmation == "yes":
+        shutil.rmtree(b.get_static_dir(), ignore_errors=True)
+        shutil.rmtree(b.get_assets_dir(), ignore_errors=True)
+        shutil.rmtree(b.get_posts_dir(), ignore_errors=True)
+
+        os.makedirs(b.get_assets_dir())
+        os.makedirs(b.get_posts_dir())
+
+        print(get_term_prompt_header(b) + "Done.")
+
+    else:
+        print(get_term_prompt_header(b) + "Invalid input. Exiting.")
 
 def dump_index(env, site_obj, included_posts, dst):
     """
@@ -23,8 +50,9 @@ def dump_index(env, site_obj, included_posts, dst):
     index_style = "css/index.css"
     assets_path = "assets/"
 
-    baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
+    baseurl = get_baseurl(site_obj, dst)
 
+    os.makedirs(site_obj.get_static_dir(), exist_ok=True)
     with open(site_obj.get_static_dir() + "index.html", "w+") as f:
         f.write(template.render(site=site_obj,
                                 posts=included_posts,
@@ -48,7 +76,7 @@ def dump_post(env, site_obj, post_obj, dst):
     static_path = site_obj.get_static_dir() + post_obj.get_static_path()
     assets_path = "assets/"
 
-    baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
+    baseurl = get_baseurl(site_obj, dst)
 
     os.makedirs(os.path.dirname(static_path), exist_ok=True)
     with open(static_path + ".html", "w+") as f:
@@ -98,12 +126,12 @@ def dump_about(env, site_obj, dst):
     """
     template = env.get_template('about.html')
     about_style = "css/about.css"
-    static_path = site_obj.get_static_dir()
     assets_path = "assets/"
 
     baseurl = site_obj.baseurl if dst == "github" else "//localhost:5000/"
 
-    with open(static_path + "about.html", "w+") as f:
+    os.makedirs(site_obj.get_static_dir(), exist_ok=True)
+    with open(site_obj.get_static_dir() + "about.html", "w+") as f:
         f.write(template.render(site=site_obj,
                                 style=about_style,
                                 favicon_dir=assets_path + "favicon.ico",
@@ -119,8 +147,7 @@ def generate(dst):
     b = blog.Blog()
     env = Environment(loader=FileSystemLoader(b.get_templates_dir()))
 
-    term_prompt_header = colored("[{}] ".format(b.name), "cyan")
-    print(term_prompt_header + "Generating static files...")
+    print(get_term_prompt_header(b) + "Generating static files...")
 
     included_posts = []
 
@@ -145,8 +172,20 @@ def generate(dst):
     # Generate assets.
     dump_assets(b)
 
-    print(term_prompt_header + "Done.")
+    print(get_term_prompt_header(b) + "Done.")
+
+    # allow site_obj to pass through
     return b
+
+def cleanup():
+    b = blog.Blog()
+
+    print(get_term_prompt_header(b) + "Removing legacy static files...")
+
+    shutil.rmtree(b.get_static_dir())
+    os.makedirs(b.get_static_dir())
+    
+    print(get_term_prompt_header(b) + "Done.")
 
 if __name__ == "__main__":
     generate("github")
