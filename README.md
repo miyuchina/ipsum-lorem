@@ -1,3 +1,5 @@
+
+
 # Final Project Proposal
 
 [The perfect static website generator is the one you write yourself.](https://schier.co/blog/2014/12/02/the-perfect-static-website-generator-is-the-one-you-write-yourself.html)
@@ -15,22 +17,22 @@ The final product will include one set of default HTML and CSS theme, with a set
 - Using class and inheritance to create different `Page` objects and support further expandability;
 - Using regular expressions to parse YAML-style front matters in Markdown files;
 - Using `json` package to parse site-wide preferences in `config.json`;
-- Implementing an HTTP server using Python packages.
+- Implementing a local server using Python packages.
 
 ### External Libraries
 
 - [markdown2](https://github.com/trentm/python-markdown2)
-- [Jinja2](http://jinja.pocoo.org)
-- [watchdog](https://pypi.python.org/pypi/watchdog)
+- [jinja2](http://jinja.pocoo.org)
+- [flask](http://flask.pocoo.org/)
+- [termcolor](https://pypi.python.org/pypi/termcolor)
 
 ### Milestones
 - Support parsing blog posts written in Markdown;
 - Support Jinja2 template language; basic framework implementation;
 - Support side-wide configurations in `config.json`;
-- Generate `index.html` with proper "read more" buttons, search and tag functionality;
-- Support default code highlighting, comment section and bootstrap; provide a default theme;
+- Generate `index.html` with proper excerpts;
+- Support different styles of code highlighting; provide a default theme;
 - Support local deployment and basic server functionalities;
-- Monitor file changes and auto-regenerate static files;
 - Support GitHub Pages.
 
 
@@ -44,41 +46,173 @@ The final product will include one set of default HTML and CSS theme, with a set
 
 ## Instructions to run the code
 
-(*Incomplete.*)
+### Usage
+
+#### Workflow to publish a new post
+
+1. Under `posts/` , create a new Markdown file similar to the one below:
+
+   ```
+   title: Some Title
+   author: Some Author
+   date: 01-01-1971
+   ---
+   The first paragraph (which will be used as excerpt.)
+
+   And some other contents. With an image below:
+
+   ![dr.watson](assets/img/dr_watson.jpg)
+   ```
+
+   *Optional:* Run `python main.py local` to see if the result is what you want.
+
+   *Optional:* Name the Markdown file `ignore-sample.md` to be ignored by the site generator.
+
+2. Run `python main.py github` .
+
+3. There is no Step 3.
+
+#### General Usage
 
 ```sh
-$ ./server.py deploy
-$ ./server.py serve 8080
+$ python main.py                         # display usage information
+Usage: python main.py [github|local] <commit-msg>
+
+$ python main.py init	                 # regenerate file structure
+[Another Blog] This could remove all your content.
+[Another Blog] Are you sure? yes/no: yes
+[Another Blog] Done.
+
+$ python main.py local                   # run on localhost:5000 using flask
+[Another Blog] Generating static files...
+[Another Blog] Done.
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ 
+$ python main.py github some commit msg  # publish the blog to Github Pages
+[Another Blog] Generating static files...
+[Another Blog] Done.
+# Some git information
+[Another Blog] Dumped to Github Pages.
+
+$ python main.py cleanup                 # remove static files
+[Another Blog] Removing legacy static files...
+[Another Blog] Done.
 ```
 
-Current structure:
+#### config.json
 
-```
+This file contains the basic settings of your blog. Most of the variables are pretty straight forward:
+
+- blog_name: the name of your blog. Terminal prompt headers `[Another Blog] Done.` will change with this.
+
+- default_author: the name of the author to be displayed in the footer.
+
+- baseurl: the base URL of your site.
+
+- description: the description to be included in the footer.
+
+- contact: the bio information of the author to be included in the footer.
+
+- theme: the theme of your blog. For example, if you have a file structure like this:
+
+  ```sh
+  [...]
+  ├── templates
+  │   ├── css
+  │   │   ├── default
+  │   │   │   ├── about.css
+  │   │   │   ├── index.css
+  │   │   │   └── post.css
+  │   │   └── fancy
+  │   │       ├── about.css
+  │   │       ├── index.css
+  │   │       └── post.css
+  [...]
+  ```
+
+  you can specify `"theme": "fancy"` and the generator will use the css files you have under `css/fancy/` .
+
+- highlight_style: determines which code highlighting style to use, e.g. `"highlight_style": "atom-one-dark"` . For a list of styles, see [highlight.js](https://highlightjs.org/).
+
+- posts_dir: specifies the post directory (which means you can name your posts folder whatever you want. Same below.)
+
+- assets_dir: specifies the assets directory.
+
+- styles_dir: specifies the styles directory.
+
+- js_dir: specifies the JavaScript directory.
+
+- templates_dir: specifies the templates directory.
+
+- static_dir: specifies the static directory.
+
+- ignore_posts: contains a list of REGEX patterns that can be used to match filenames of your Markdown files. These files will then be ignored by the generator.
+
+### File Structure:
+
+```sh
 .
 ├── assets
-│   └── images
-├── content
-│   ├── posts
-│   │   ├── sample1.md
-│   │   └── sample2.md
-│   └── index.html
-├── layouts
+│   ├── img
+│   │   └── dr_watson.jpg
+│   └── favicon.ico
+├── posts
+│   ├── sample0.md
+│   ├── [...]
+│   └── sample5.md
+├── templates
 │   ├── css
-│   │   └── default.css
+│   │   └── default
+│   │       ├── about.css
+│   │       ├── index.css
+│   │       └── post.css
 │   ├── js
 │   │   └── default.js
-│   └── templates
-│       ├── index.html
-│       ├── layout.html
-│       └── post.html
-├── static
-│   └── posts
-│   │   ├── 10-21-2011 - Sample Post 1.html
-│   │   └── 11-11-1991 - An Exhibit of Markdown.html
-│   └── index.html
-├── blog.py
+│   ├── about.html
+│   ├── index.html
+│   ├── layout.html
+│   └── post.html
 ├── config.json
+├── blog.py
 ├── page.py
-└── server.py
+├── dump.py
+├── github.py
+├── server.py
+└── main.py
 ```
 
+### Speed Tests
+
+Due to the nature of static sites, they are very fast once deployed and uploaded to the server. All the processing takes place, then, when we generate the html files locally. Although we haven't done any optimizations, both `markdown2` and `jinja2` are extremely fast packages. Here is a test running from a fresh clone, containing 6 posts:
+
+```sh
+$ rm -rf static
+$ rm -rf __pycache__
+$ rm *.pyc
+$ time python main.py local
+[Another Blog] Generating static files...
+[Another Blog] Done.
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+^C python main.py local  0.27s user 0.04s system 15% cpu 1.987 total
+```
+
+ `python main.py github` is restricted by the `git push` speed.
+
+If we only run `dump.py` (i.e. only generate static files):
+
+```sh
+$ time python dump.py
+[Another Blog] Generating static files...
+[Another Blog] Done.
+python dump.py  0.18s user 0.02s system 93% cpu 0.222 total
+```
+
+If we generate 100 posts:
+
+```sh
+$ time python main.py local
+[Another Blog] Generating static files...
+[Another Blog] Done.
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+^C python main.py local  1.24s user 0.07s system 6% cpu 19.517 total
+```
