@@ -72,6 +72,23 @@ The final product will include one set of default HTML and CSS theme, with a set
 
 3. There is no Step 3.
 
+#### Workflow to create a new static page
+
+1. In `page.py`, define a new class and tell the super `__init__` method its page type, e.g.:
+   ```python
+   class About(Page):
+      def __init__(self):
+         super().__init__("about")
+   ```
+2. Create a template with the same name under `templates/` (e.g. `about.html`) and provide a CSS file for it (e.g. `about.css`).
+
+3. In the `generate()` function in `dump.py`, create a new instance of your class and dump it using the default dump method, e.g.:
+   ```python
+   a = page.About()
+   a.dump(env, b, dst)
+   ```
+4. There is no Step 4.
+
 #### General Usage
 
 ```sh
