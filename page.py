@@ -18,6 +18,18 @@ class Page:
     # Accessor method
     def get_page_type(self): return self._page_type
 
+    def dump(self, env, site_obj, dst):
+        template = env.get_template(self.get_page_type() + ".html")
+        style = "css/{}.css".format(self.get_page_type())
+        baseurl = get_baseurl(site_obj, dst)
+
+        os.makedirs(site_obj.get_static_dir(), exist_ok=True)
+        with open("{}{}.html".format(site_obj.get_static_dir(),
+                                     self.get_page_type()), "w+") as f:
+            f.write(template.render(site=site_obj,
+                                    style=style,
+                                    baseurl=baseurl))
+
 class Index(Page):
     """
     A subclass of Page with page_type = "index".
@@ -25,6 +37,29 @@ class Index(Page):
     def __init__(self):
         # self._page_type = "index"
         super().__init__("index")
+
+    def dump(self, env, site_obj, included_posts, dst):
+        """
+        Generate static pages for index.
+
+        Args:
+            env: the template environment.
+            site_obj: a site object.
+            included_posts: a list of included posts.
+            dst: serve locally or on Github Pages.
+        """
+        template = env.get_template('index.html')
+        index_style = "css/index.css"
+        assets_path = "assets/"
+
+        baseurl = get_baseurl(site_obj, dst)
+
+        os.makedirs(site_obj.get_static_dir(), exist_ok=True)
+        with open(site_obj.get_static_dir() + "index.html", "w+") as f:
+            f.write(template.render(site=site_obj,
+                                    posts=included_posts,
+                                    style=index_style,
+                                    baseurl=baseurl))
 
 class Post(Page):
     """
@@ -58,6 +93,19 @@ class Post(Page):
     def get_excerpt(self): return self._excerpt
     def get_static_path(self): return self._static_path
 
+    def dump(self, env, site_obj, dst):
+        template = env.get_template('post.html')
+        style = "css/post.css"
+        static_path = site_obj.get_static_dir() + self.get_static_path()
+        baseurl = get_baseurl(site_obj, dst)
+
+        os.makedirs(os.path.dirname(static_path), exist_ok=True)
+        with open(static_path + ".html", "w+") as f:
+            f.write(template.render(site=site_obj,
+                                    post=self,
+                                    style=style,
+                                    baseurl=baseurl))
+
     # provide a way to sort posts according to publication date
     def getKey(self):
         month, day, year = self._date.split("-")
@@ -69,6 +117,9 @@ class About(Page):
     """
     def __init__(self):
         super().__init__("about")
+
+def get_baseurl(site_obj, dst):
+    return site_obj.baseurl if dst == "github" else "//localhost:5000/"
 
 def parse(md_file):
     """
