@@ -108,7 +108,7 @@ $ python main.py local                   # run on localhost:5000 using flask
 [Another Blog] Generating static files...
 [Another Blog] Done.
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
- 
+
 $ python main.py github some commit msg  # publish the blog to Github Pages
 [Another Blog] Generating static files...
 [Another Blog] Done.
@@ -237,3 +237,22 @@ $ time python main.py local
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ^C python main.py local  1.24s user 0.07s system 6% cpu 19.517 total
 ```
+
+
+# Final Project Grading
+
+## Functionality: 10/10
+
+A static site-generator that is fully functioning and feature-rich?  Yes, you deserve all 10 points plus a few more!
+
+## Challenge and Endurance: 10/10
+
+I love the idea of this project, I love that you decided to go for it, and I love that even when you faced some challenges (hosting on Github Pages) you worked through them and overcame them.
+
+## Code Quality: 10/10
+
+Beautiful code, well-designed with clean abstractions and clear separatations!
+
+## Final Product: 10/10
+
+Mi:  I am not writing much because there's not much to write---I'm blown away by this project and ultra-impressed.  Well done!
