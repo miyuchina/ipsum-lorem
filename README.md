@@ -1,54 +1,12 @@
-
-
-# Final Project Proposal
+# Ipsum Lorem
 
 [The perfect static website generator is the one you write yourself.](https://schier.co/blog/2014/12/02/the-perfect-static-website-generator-is-the-one-you-write-yourself.html)
 
 This project aims to build a Python-based static site generator, with focuses on expandability, full custom control and ease of use. The framework design has both web developers and blog writers in mind, but should completely separate code from blog posts. The goal is to deploy and start a blog on a server with as little hassle as possible.
 
-## Data Plan
-*Not applicable.*
+## Usage
 
-## Implementation Plan
-This project will be a Python mock-up of existing static site generators, such as [Jekyll](https://jekyllrb.com), [Hugo](https://gohugo.io), etc., but will start from scratch. References to existing products are limited to studying their features and functionalities, without looking at their design or implementation.
-
-The final product will include one set of default HTML and CSS theme, with a set of bare-bone templates written in Jinja2, but will otherwise be implemented in Python. Relevant skills include:
-
-- Using class and inheritance to create different `Page` objects and support further expandability;
-- Using regular expressions to parse YAML-style front matters in Markdown files;
-- Using `json` package to parse site-wide preferences in `config.json`;
-- Implementing a local server using Python packages.
-
-### External Libraries
-
-- [markdown2](https://github.com/trentm/python-markdown2)
-- [jinja2](http://jinja.pocoo.org)
-- [flask](http://flask.pocoo.org/)
-- [termcolor](https://pypi.python.org/pypi/termcolor)
-
-### Milestones
-- Support parsing blog posts written in Markdown;
-- Support Jinja2 template language; basic framework implementation;
-- Support side-wide configurations in `config.json`;
-- Generate `index.html` with proper excerpts;
-- Support different styles of code highlighting; provide a default theme;
-- Support local deployment and basic server functionalities;
-- Support GitHub Pages.
-
-
-## Deliverables
-- `server.py`
-
-# Final Project Report
-*What you have achieved/learned*
-
-*What open questions remain*
-
-## Instructions to run the code
-
-### Usage
-
-#### Workflow to publish a new post
+### Workflow to publish a new post
 
 1. Under `posts/` , create a new Markdown file similar to the one below:
 
@@ -72,7 +30,7 @@ The final product will include one set of default HTML and CSS theme, with a set
 
 3. There is no Step 3.
 
-#### Workflow to create a new static page
+### Workflow to create a new static page
 
 1. In `page.py`, define a new class and tell the super `__init__` method its page type, e.g.:
 
@@ -93,7 +51,7 @@ The final product will include one set of default HTML and CSS theme, with a set
 
 4. There is no Step 4.
 
-#### General Usage
+### General Usage
 
 ```sh
 $ python main.py                         # display usage information
@@ -120,7 +78,7 @@ $ python main.py cleanup                 # remove static files
 [Another Blog] Done.
 ```
 
-#### config.json
+### config.json
 
 This file contains the basic settings of your blog. Most of the variables are pretty straight forward:
 
@@ -202,7 +160,7 @@ This file contains the basic settings of your blog. Most of the variables are pr
 └── main.py
 ```
 
-### Speed Tests
+## Speed Tests
 
 Due to the nature of static sites, they are very fast once deployed and uploaded to the server. All the processing takes place, then, when we generate the html files locally. Although we haven't done any optimizations, both `markdown2` and `jinja2` are extremely fast packages. Here is a test running from a fresh clone, containing 6 posts:
 
@@ -237,22 +195,3 @@ $ time python main.py local
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ^C python main.py local  1.24s user 0.07s system 6% cpu 19.517 total
 ```
-
-
-# Final Project Grading
-
-## Functionality: 10/10
-
-A static site-generator that is fully functioning and feature-rich?  Yes, you deserve all 10 points plus a few more!
-
-## Challenge and Endurance: 10/10
-
-I love the idea of this project, I love that you decided to go for it, and I love that even when you faced some challenges (hosting on Github Pages) you worked through them and overcame them.
-
-## Code Quality: 10/10
-
-Beautiful code, well-designed with clean abstractions and clear separatations!
-
-## Final Product: 10/10
-
-Mi:  I am not writing much because there's not much to write---I'm blown away by this project and ultra-impressed.  Well done!
